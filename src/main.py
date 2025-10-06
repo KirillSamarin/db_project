@@ -1,6 +1,13 @@
 from db_manager import DBManager
+from tables_create import create_database, create_tables
 
-db = DBManager()
+
+def initialize_database():
+    """Инициализирует базу данных и таблицы"""
+    print("Инициализация базы данных...")
+    create_database()
+    create_tables()
+    print("База данных готова к работе!\n")
 
 
 def user_interface():
@@ -14,6 +21,7 @@ def user_interface():
         print("3. Получить среднюю зарплату по всем вакансиям")
         print("4. Получить все вакансии, зарплата которых выше средней")
         print("5. Получить все вакансии, содержащие определенное слово")
+        print("6. Пересоздать базу данных и таблицы")
         print("0. Выйти из программы")
 
         try:
@@ -86,8 +94,15 @@ def user_interface():
                 else:
                     print("Вы не ввели ключевое слово для поиска.")
 
+            elif user_input == 6:
+                confirm = input("Вы уверены, что хотите пересоздать базу данных? Все данные будут удалены! (y/n): ")
+                if confirm.lower() == 'y':
+                    initialize_database()
+                else:
+                    print("Операция отменена.")
+
             else:
-                print("Неверный выбор. Пожалуйста, выберите число от 0 до 5.")
+                print("Неверный выбор. Пожалуйста, выберите число от 0 до 6.")
 
         except ValueError:
             print("Пожалуйста, введите число!")
@@ -96,4 +111,11 @@ def user_interface():
 
 
 if __name__ == "__main__":
+    # Инициализируем базу данных при запуске программы
+    initialize_database()
+
+    # Создаем экземпляр менеджера базы данных
+    db = DBManager()
+
+    # Запускаем пользовательский интерфейс
     user_interface()
