@@ -1,2 +1,4 @@
-Перед использованием запустить файл tables_create.py во избежание ошибок в работе.
+Для установки клонируйте репозиторий через встроенную в pycharm функцию get project from version control
+Либо вручную, прописав в терминале: git clone https://github.com/KirillSamarin/db_project.git.
+
 
